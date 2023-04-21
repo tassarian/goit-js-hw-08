@@ -12,7 +12,7 @@ if (localStorage.getItem("feedback-form-state")) {
     messageInput.value = JSON.parse(localStorage.getItem("feedback-form-state")).message
 }
 
-feedbackForm = {}
+let feedbackForm = {}
 
 function saveInput() {
     feedbackForm.email = emailInput.value;
