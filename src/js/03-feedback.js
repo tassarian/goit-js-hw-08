@@ -24,7 +24,7 @@ function saveInput() {
 function handleSubmit(e) {
     e.preventDefault();
     const state = JSON.parse(localStorage.getItem("feedback-form-state"))
-    console.log();
+    console.log(state);
     localStorage.clear(state);
     form.reset();
 }
