@@ -8,8 +8,9 @@ const messageInput = form.querySelector('[name="message"]');
 form.addEventListener('input', throttle(saveInput, 500));
 
 if (localStorage.getItem("feedback-form-state")) {
-    emailInput.value = JSON.parse(localStorage.getItem("feedback-form-state")).email;
-    messageInput.value = JSON.parse(localStorage.getItem("feedback-form-state")).message
+    const state = JSON.parse(localStorage.getItem("feedback-form-state"));
+    emailInput.value = state.email;
+    messageInput.value = state.message;
 }
 
 let feedbackForm = {}
@@ -20,9 +21,12 @@ function saveInput() {
     localStorage.setItem("feedback-form-state", JSON.stringify(feedbackForm))
 }
 
-form.addEventListener('submit', (e) => {
+function handleSubmit(e) {
     e.preventDefault();
-    console.log(JSON.parse(localStorage.getItem("feedback-form-state")));
-    localStorage.clear();
+    const state = JSON.parse(localStorage.getItem("feedback-form-state"))
+    console.log();
+    localStorage.clear(state);
     form.reset();
-})
+}
+
+form.addEventListener('submit', handleSubmit)

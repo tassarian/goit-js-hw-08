@@ -5,15 +5,16 @@ const iframe = document.querySelector('iframe');
 
 const player = new Player(iframe);
 
+const PLAYBACK_TIME = "videoplayer-current-time"
+
 const onPlay = function (data) {
-    localStorage.setItem("videoplayer-current-time", JSON.stringify(data))
+    localStorage.setItem(PLAYBACK_TIME, JSON.stringify(data))
     
 }
 player.on('timeupdate', throttle(onPlay, 1000))
 
+const savedTime = localStorage.getItem(PLAYBACK_TIME)
 
-player.setCurrentTime(
-    JSON.parse(
-        localStorage.getItem("videoplayer-current-time")
-    ).seconds
-)
+if (savedTime !== null) {
+    player.setCurrentTime(JSON.parse(savedTime).seconds)
+};
